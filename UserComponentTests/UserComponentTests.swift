@@ -11,24 +11,53 @@ import XCTest
 
 class UserComponentTests: XCTestCase {
 
+    var mainVc: ViewController!
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        mainVc = ViewController()
+        _ = mainVc.view
     }
 
+    
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    
+    func testrootbackground() {
+        XCTAssertNotNil(mainVc.collectionView)
+        XCTAssertEqual(mainVc.collectionView.backgroundColor, UIColor.systemBackground)
     }
+    
+    
+    func testCellUIelements(){
+        let cell = mainVc.collectionView.cellForItem(at: .init(row: 0, section: 0)) as! UserComponent
+        let cellData = mainVc.snapshotForCurrentState().itemIdentifiers.first
+        
+        XCTAssertNotNil(cell)
+        // test UI elements
+        
+        XCTAssertNotNil(cell.artistName)
+        XCTAssertEqual(cell.artistName.text, cellData?.artistName)
+        
+        XCTAssertNotNil(cell.location)
+        XCTAssertEqual(cell.location.text, cellData?.location)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        XCTAssertNotNil(cell.followers)
+        XCTAssertEqual(cell.data?.follwersNumber, cellData?.follwersNumber)
+        XCTAssertTrue(cell.playingLiveIcon.isHidden)
+        
+        XCTAssertNotNil(cell.followButton)
+        XCTAssertNotNil(cell.playingLiveIcon)
+        XCTAssertNotNil(cell.rootBackground)
+
+        
+        
     }
+    
+ 
 
 }
