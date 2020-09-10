@@ -2,7 +2,7 @@
 //  UserComponentUITests.swift
 //  UserComponentUITests
 //
-//  Created by Startdevelopment on 01/09/2020.
+//  Created by MohamedNouri on 01/09/2020.
 //  Copyright © 2020 MohamedNouri. All rights reserved.
 //
 

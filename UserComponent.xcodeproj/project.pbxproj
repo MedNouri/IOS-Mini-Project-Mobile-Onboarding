@@ -111,16 +111,16 @@
 		7D401FC224FE5FE1000162D7 /* UserComponent */ = {
 			isa = PBXGroup;
 			children = (
+				7D5F425F250785C50066818C /* View controllers  */,
 				7D698A5A250576B500709D93 /* Data Mocking */,
 				7D698A572505758400709D93 /* SharedViews */,
 				7D698A522505752200709D93 /* Extensions */,
 				7D401FC324FE5FE1000162D7 /* AppDelegate.swift */,
 				7D401FC524FE5FE1000162D7 /* SceneDelegate.swift */,
-				7D401FC724FE5FE1000162D7 /* ViewController.swift */,
 				7D401FC924FE5FE1000162D7 /* Main.storyboard */,
-				7D401FCC24FE5FE2000162D7 /* Assets.xcassets */,
 				7D401FCE24FE5FE2000162D7 /* LaunchScreen.storyboard */,
 				7D401FD124FE5FE2000162D7 /* Info.plist */,
+				7D401FCC24FE5FE2000162D7 /* Assets.xcassets */,
 			);
 			path = UserComponent;
 			sourceTree = "<group>";
@@ -141,6 +141,14 @@
 				7D401FE724FE5FE2000162D7 /* Info.plist */,
 			);
 			path = UserComponentUITests;
+			sourceTree = "<group>";
+		};
+		7D5F425F250785C50066818C /* View controllers  */ = {
+			isa = PBXGroup;
+			children = (
+				7D401FC724FE5FE1000162D7 /* ViewController.swift */,
+			);
+			path = "View controllers ";
 			sourceTree = "<group>";
 		};
 		7D698A522505752200709D93 /* Extensions */ = {

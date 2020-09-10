@@ -20,15 +20,22 @@ class UserComponent: UICollectionViewCell {
     didSet {
         
         
-        artistName.text = data?.artistName.displayNicely
-        location.text = data?.location.displayNicely
-        followers.text = "\(data?.follwersNumber ?? "") Followers"
-        playingLiveIcon.isHidden = !(data?.currentlyLive ?? false )
-        setFollowingButton(data?.followed ?? false )
+        guard let data = data else {return}
+        
+        artistName.text = data.artistName.displayNicely
+        location.text = data.location.displayNicely
+        followers.text = "\(data.follwersNumber) Followers"
+        
+        if (data.currentlyLive){
+                 playingLiveIcon.isHidden = false
+                 playingLiveIcon.startOscillation()
+        }
+   
+        setFollowingButton(data.followed )
         
         
         
-    //    downloadImage(imageurl: data?.photoURL ?? "")
+        downloadImage(imageurl: data.photoURL)
         
         
         
@@ -49,14 +56,14 @@ class UserComponent: UICollectionViewCell {
             }
         }
     }
+    
+    
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
     private func downloadImage(imageurl:String){
-        
-  
-        if let url = URL(string: imageurl) {
+    if let url = URL(string: imageurl) {
                               self.downloadImage(from:url , success: { (image) in
                                 self.userImage.image = image
 
@@ -69,9 +76,7 @@ class UserComponent: UICollectionViewCell {
     }
     
     private func setFollowingButton(_ followed:Bool){
-        
-        
-        if followed {
+    if followed {
             followButton.backgroundColor = .ButtonSelectedColor
             followButton.setTitle("Following", for: .normal)
         }
@@ -100,8 +105,8 @@ class UserComponent: UICollectionViewCell {
        userimage.contentMode = .scaleAspectFill
        userimage.clipsToBounds = true
        userimage.layer.borderWidth = 1.0
-      userimage.layer.borderColor = UIColor.buttonC?.withAlphaComponent(0.1).cgColor
- 
+       userimage.layer.borderColor = UIColor.buttonC?.withAlphaComponent(0.1).cgColor
+       userimage.layer.cornerRadius = 40
 
        return userimage
    }()
@@ -244,15 +249,15 @@ extension UserComponent {
  
  rootBackground.addSubview(followButton)
     
+    
+    // Setting Auto Layout
     NSLayoutConstraint.activate([
-         
-        rootBackground.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+       // rootBackground
+         rootBackground.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
         rootBackground.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
         rootBackground.topAnchor.constraint(equalTo: topAnchor, constant: 0),
         rootBackground.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-        
-        
-        // userImage
+        // rootStackView
         rootStackView.centerYAnchor.constraint(equalTo: rootBackground.centerYAnchor),
         rootStackView.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 16),
         rootStackView.trailingAnchor.constraint(greaterThanOrEqualTo: userImage.leadingAnchor, constant: 16),
@@ -263,8 +268,6 @@ extension UserComponent {
         followButton.widthAnchor.constraint(equalToConstant: 85),
         followButton.heightAnchor.constraint(equalToConstant: 35),
         // userImage
-        
-        
         userImage.centerYAnchor.constraint(equalTo: rootBackground.centerYAnchor),
         userImage.leadingAnchor.constraint(equalTo: rootBackground.leadingAnchor, constant: 16),
         userImage.widthAnchor.constraint(equalToConstant: 80),
@@ -273,7 +276,7 @@ extension UserComponent {
            
     ])
     
-     userImage.layer.cornerRadius = 40
+   
     
     
   }
@@ -281,33 +284,4 @@ extension UserComponent {
 }
 
 
-/*
  
-
-  
-  override func viewDidLoad() {
-      super.viewDidLoad()
-
-      
-      
-
-      
-      
-      
-      
-  }
-  
-  
-  @objc func followToggleButton(){
-      
-      
-      followButton.setTitle("Following", for: .normal)
-      
-  }
-  
-  
-  override func viewDidLayoutSubviews() {
-      super.viewDidLayoutSubviews()
-      userImage.layer.cornerRadius = userImage.frame.width/2
-  }
- */

@@ -2,7 +2,7 @@
 //  IndicatorAnimator.swift
 //  UserComponent
 //
-//  Created by Startdevelopment on 02/09/2020.
+//  Created by MohamedNouri on 02/09/2020.
 //  Copyright © 2020 MohamedNouri. All rights reserved.
 //
 
@@ -10,6 +10,10 @@ import UIKit
 
 class IndicatorAnimator: UIView {
 
+    
+    
+    
+    // Indicator Settigns
     private let kBarCount = 4
     private let kBarWidth:CGFloat = 2.0
     private let kBarIdleHeight:CGFloat = 3.0
@@ -21,7 +25,7 @@ class IndicatorAnimator: UIView {
     private let kMaxBaseOscillationPeriod = CFTimeInterval(0.8)
     private let kOscillationAnimationKey:String = "oscillation"
     private let kDecayDuration = CFTimeInterval(0.3)
-    private let kDecayAnimationKey:String = "decay"
+   
     
     var barLayers = [CALayer]()
     var hasInstalledConstraints: Bool = false
@@ -32,7 +36,7 @@ class IndicatorAnimator: UIView {
         prepareBarLayers()
         tintColorDidChange()
         setNeedsUpdateConstraints()
-        startOscillation()
+     
     }
     
     convenience init() {
@@ -89,21 +93,9 @@ class IndicatorAnimator: UIView {
     override func updateConstraints() {
         if !hasInstalledConstraints {
             let size = intrinsicContentSize
-            addConstraint(NSLayoutConstraint(item: self,
-                                        attribute: .width,
-                                        relatedBy: .equal,
-                                            toItem: nil,
-                                        attribute: .notAnAttribute,
-                                        multiplier: 0.0,
-                                        constant: size.width));
+            addConstraint(NSLayoutConstraint(item: self,attribute: .width,relatedBy: .equal, toItem: nil,attribute: .notAnAttribute,multiplier: 0.0,constant: size.width));
             
-            addConstraint(NSLayoutConstraint(item: self,
-                                        attribute: .height,
-                                        relatedBy: .equal,
-                                        toItem: nil,
-                                        attribute: .notAnAttribute,
-                                        multiplier: 0.0,
-                                        constant: size.height));
+            addConstraint(NSLayoutConstraint(item: self, attribute: .height,relatedBy: .equal, toItem: nil,attribute: .notAnAttribute, multiplier: 0.0,constant: size.height));
             hasInstalledConstraints = true
         }
         super.updateConstraints()
@@ -131,17 +123,7 @@ class IndicatorAnimator: UIView {
         }
     }
     
-    func startDecay() {
-        for layer in barLayers {
-            startDecayingBarLayer(layer)
-        }
-    }
-    
-    func stopDecay() {
-        for layer in barLayers {
-            layer.removeAnimation(forKey: kDecayAnimationKey)
-        }
-    }
+  
     
     private func startOscillatingBarLayer(_ layer: CALayer, basePeriod: CFTimeInterval) {
         // arc4random_uniform() will return a uniformly distributed random number **less** upper_bound.
@@ -156,7 +138,7 @@ class IndicatorAnimator: UIView {
         let animation: CABasicAnimation = CABasicAnimation(keyPath: "bounds")
         animation.fromValue = NSValue(cgRect:fromBouns)
         animation.toValue = NSValue(cgRect:toBounds)
-        animation.repeatCount = Float.infinity // Forever
+        animation.repeatCount = Float.infinity
         animation.autoreverses = true
         animation.duration = TimeInterval((CGFloat(basePeriod) / 2) * (kBarMaxPeakHeight / peakHeight))
         animation.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeIn)
@@ -164,18 +146,7 @@ class IndicatorAnimator: UIView {
         layer.add(animation, forKey: kOscillationAnimationKey)
     }
     
-    private func startDecayingBarLayer(_ layer: CALayer) {
-        let animation: CABasicAnimation = CABasicAnimation(keyPath: "bounds")
-        
-        if let presentation = layer.presentation() {
-            animation.fromValue = NSValue(cgRect:CALayer(layer: presentation).bounds)
-        }
-        animation.toValue = NSValue(cgRect:layer.bounds)
-        animation.duration = kDecayDuration
-        animation.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeOut)
-        
-        layer.add(animation, forKey: kDecayAnimationKey)
-    }
+ 
 
  
     

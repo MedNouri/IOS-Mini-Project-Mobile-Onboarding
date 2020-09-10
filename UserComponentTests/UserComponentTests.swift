@@ -2,7 +2,7 @@
 //  UserComponentTests.swift
 //  UserComponentTests
 //
-//  Created by Startdevelopment on 01/09/2020.
+//  Created by MohamedNouri on 01/09/2020.
 //  Copyright © 2020 MohamedNouri. All rights reserved.
 //
 
@@ -15,8 +15,11 @@ class UserComponentTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+  
         mainVc = ViewController()
         _ = mainVc.view
+       
+
     }
 
     
@@ -36,9 +39,13 @@ class UserComponentTests: XCTestCase {
     func testCellUIelements(){
         let cell = mainVc.collectionView.cellForItem(at: .init(row: 0, section: 0)) as! UserComponent
         let cellData = mainVc.snapshotForCurrentState().itemIdentifiers.first
-        
+        XCTAssertEqual(mainVc.collectionView.visibleCells.count, 4, "There should be 4 rows initially")
+
         XCTAssertNotNil(cell)
         // test UI elements
+        
+        
+       // texttest.typeText("test")
         
         XCTAssertNotNil(cell.artistName)
         XCTAssertEqual(cell.artistName.text, cellData?.artistName)

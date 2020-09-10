@@ -2,7 +2,7 @@
 //  PlaybackIndicator.swift
 //  UserComponent
 //
-//  Created by Startdevelopment on 02/09/2020.
+//  Created by MohamedNouri on 02/09/2020.
 //  Copyright © 2020 MohamedNouri. All rights reserved.
 //
 
@@ -13,22 +13,24 @@ class PlaybackIndicator: UIView {
     
     
     
-    
+    // label for the live Indicator
     let livelable : UILabel =
     {
         let livelable = UILabel()
         livelable.text = "Live"
         livelable.textColor = .orangeC
+        livelable.translatesAutoresizingMaskIntoConstraints = false
         livelable.font = .systemFont(ofSize: 10, weight: .light)
         return livelable
     }()
     
     
-    
-    let Indicator : IndicatorAnimator =
+    //Indicator Custom View 
+
+   let  Indicator : IndicatorAnimator =
     {
         let indicator = IndicatorAnimator()
-        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
@@ -37,6 +39,17 @@ class PlaybackIndicator: UIView {
     
     
     
+    func startOscillation() {
+     Indicator.startOscillation()
+    isHidden = false
+
+    }
+    
+    func stopOscillation() {
+     Indicator.stopOscillation()
+     isHidden = true
+    }
+
     
     
     
@@ -61,8 +74,10 @@ class PlaybackIndicator: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(livelable)
         addSubview(Indicator)
-        livelable.translatesAutoresizingMaskIntoConstraints = false
-        Indicator.translatesAutoresizingMaskIntoConstraints = false
+
+       
+        
+        // auto Layout Setting
          NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: 45),
             heightAnchor.constraint(equalToConstant: 15),
@@ -79,16 +94,6 @@ class PlaybackIndicator: UIView {
     
     
     
-    
-    //in playground we should have a red rectangle
-    
-    
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
+ 
     
 }
