@@ -9,7 +9,7 @@
 import UIKit
 
 class IndicatorAnimator: UIView {
-
+    
     
     
     
@@ -25,10 +25,10 @@ class IndicatorAnimator: UIView {
     private let kMaxBaseOscillationPeriod = CFTimeInterval(0.8)
     private let kOscillationAnimationKey:String = "oscillation"
     private let kDecayDuration = CFTimeInterval(0.3)
-   
-       // CA layer  table
+    
+    // CA layer  table
     var barLayers = [CALayer]()
-     // determine if we have already Constraints
+    // determine if we have already Constraints
     var hasInstalledConstraints: Bool = false
     
     override init(frame: CGRect) {
@@ -37,19 +37,19 @@ class IndicatorAnimator: UIView {
         prepareBarLayers()
         tintColorDidChange()
         setNeedsUpdateConstraints()
-     
+        
     }
     
     convenience init() {
         self.init(frame:CGRect.zero)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     
-   // Create Bar with Spacing
+    // Create Bar with Spacing
     private func prepareBarLayers() {
         var xOffset:CGFloat = 0.0
         
@@ -61,7 +61,7 @@ class IndicatorAnimator: UIView {
         }
     }
     
-     // create Bar Layer With X Offset
+    // create Bar Layer With X Offset
     private func createBarLayerWithXOffset(_ xOffset: CGFloat, layerIndex: Int) -> CALayer {
         let layer: CALayer = CALayer()
         layer.anchorPoint = CGPoint(x: 0.0, y: 1.0) // At the bottom-left corner
@@ -107,9 +107,9 @@ class IndicatorAnimator: UIView {
     
     
     
-   
     
-     // startOscillation
+    
+    // startOscillation
     func startOscillation() {
         let basePeriod = kMinBaseOscillationPeriod + (drand48() * (kMaxBaseOscillationPeriod - kMinBaseOscillationPeriod))
         
@@ -118,15 +118,15 @@ class IndicatorAnimator: UIView {
         }
     }
     
-     // stopOscillation
+    // stopOscillation
     func stopOscillation() {
         for layer in barLayers {
             layer.removeAnimation(forKey: kOscillationAnimationKey)
         }
     }
     
- // Test if isOscillating
-
+    // Test if isOscillating
+    
     func isOscillating() -> Bool {
         if let _ = barLayers.first?.animation(forKey: kOscillationAnimationKey) {
             return true
@@ -135,7 +135,7 @@ class IndicatorAnimator: UIView {
         }
     }
     
-  
+    
     
     private func startOscillatingBarLayer(_ layer: CALayer, basePeriod: CFTimeInterval) {
         // arc4random_uniform() will return a uniformly distributed random number **less** upper_bound.
@@ -158,8 +158,8 @@ class IndicatorAnimator: UIView {
         layer.add(animation, forKey: kOscillationAnimationKey)
     }
     
- 
-
- 
+    
+    
+    
     
 }

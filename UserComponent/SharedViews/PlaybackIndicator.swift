@@ -26,8 +26,8 @@ class PlaybackIndicator: UIView {
     
     
     //Indicator Custom View 
-
-   let  Indicator : IndicatorAnimator =
+    
+    let  Indicator : IndicatorAnimator =
     {
         let indicator = IndicatorAnimator()
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -40,16 +40,16 @@ class PlaybackIndicator: UIView {
     // startOscillation - stopOscillation
     
     func startOscillation() {
-     Indicator.startOscillation()
-    isHidden = false
-
+        Indicator.startOscillation()
+        isHidden = false
+        
     }
     
     func stopOscillation() {
-     Indicator.stopOscillation()
-     isHidden = true
+        Indicator.stopOscillation()
+        isHidden = true
     }
-
+    
     
     
     
@@ -72,11 +72,11 @@ class PlaybackIndicator: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(livelable)
         addSubview(Indicator)
-
-       
+        
+        
         
         // auto Layout Setting
-         NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: 45),
             heightAnchor.constraint(equalToConstant: 15),
             livelable.centerYAnchor.constraint(equalTo:  centerYAnchor),
@@ -92,6 +92,6 @@ class PlaybackIndicator: UIView {
     
     
     
- 
+    
     
 }

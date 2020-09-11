@@ -25,7 +25,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // setting Up Collection View 
+        // setting Up Collection View
+        view.backgroundColor = .systemBackground
         configureCollectionView()
         configureDataSource()
     }
