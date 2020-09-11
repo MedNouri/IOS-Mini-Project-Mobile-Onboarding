@@ -15,6 +15,7 @@ class UserComponent: UICollectionViewCell {
     
     // To be removed
     
+ 
     var data:UserDetailItem? {
     
     didSet {
@@ -26,15 +27,8 @@ class UserComponent: UICollectionViewCell {
         location.text = data.location.displayNicely
         followers.text = "\(data.follwersNumber) Followers"
         
-        if (data.currentlyLive){
-                 playingLiveIcon.isHidden = false
-                 playingLiveIcon.startOscillation()
-        }
-   
+        checkIfCurrentlyLive(data)
         setFollowingButton(data.followed )
-        
-        
-        
         downloadImage(imageurl: data.photoURL)
         
         
@@ -57,10 +51,7 @@ class UserComponent: UICollectionViewCell {
         }
     }
     
-    
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
+   
     
     private func downloadImage(imageurl:String){
     if let url = URL(string: imageurl) {
@@ -75,6 +66,17 @@ class UserComponent: UICollectionViewCell {
         
     }
     
+    
+    
+    fileprivate func checkIfCurrentlyLive(_ data: UserDetailItem) {
+         if (data.currentlyLive){
+             playingLiveIcon.isHidden = false
+             playingLiveIcon.startOscillation()
+         }
+     }
+     
+    
+    
     private func setFollowingButton(_ followed:Bool){
     if followed {
             followButton.backgroundColor = .ButtonSelectedColor
@@ -87,6 +89,9 @@ class UserComponent: UICollectionViewCell {
     
     
     
+       func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+           URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+       }
     
   let rootBackground : UIView = {
        let root = UIView()

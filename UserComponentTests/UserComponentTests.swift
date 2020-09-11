@@ -65,6 +65,10 @@ class UserComponentTests: XCTestCase {
         
     }
     
+    func testIndicator()  {
+        
+    }
+    
  
 
 }

@@ -28,9 +28,13 @@ class UserDetailItem: Hashable {
     return lhs.identifier == rhs.identifier
   }
 
+  // UUID
   private let identifier = UUID()
     
     
+    
+    
+  // constructor
     
   init(photoURL:String,artistName:String,location: String,follwersNumber:String,followed: Bool,currentlyLive: Bool) {
           
@@ -42,6 +46,10 @@ class UserDetailItem: Hashable {
            self.currentlyLive = currentlyLive
            
    }
+    
+    
+    
+    
     
     
     

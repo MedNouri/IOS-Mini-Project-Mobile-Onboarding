@@ -37,7 +37,7 @@ class PlaybackIndicator: UIView {
     
     
     
-    
+    // startOscillation - stopOscillation
     
     func startOscillation() {
      Indicator.startOscillation()
@@ -66,8 +66,6 @@ class PlaybackIndicator: UIView {
     
     //common func to init our view
     private func setupView() {
-        
-        
         backgroundColor = .clear
         layer.borderColor = UIColor.orangeC?.cgColor
         layer.borderWidth = 1.5

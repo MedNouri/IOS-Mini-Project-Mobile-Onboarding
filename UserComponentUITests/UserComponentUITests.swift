@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+@testable import UserComponent
 class UserComponentUITests: XCTestCase {
 
     override func setUpWithError() throws {
